@@ -19,6 +19,17 @@ header {
     border-top: 1px solid rgb(117, 117, 119);
     border-bottom: 1px solid rgb(117, 117, 119);
 }
+.message{
+    background-color: rgb(130, 180, 12);
+}
+.chuckMessage{
+    background-color: rgb(136, 106, 6);
+    position: absolute;
+    left: 10px;
+}
+.userMessage{
+    background-color: rgb(136, 6, 129);
+}
 
 footer {
     height: 100px;

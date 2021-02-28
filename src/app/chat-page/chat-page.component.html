@@ -2,7 +2,12 @@
     <header>
         <p>Chat with Chuck Norris</p>
     </header>
-    <div class="chat"></div>
+    <div class="chat">
+        <div *ngFor="let m of messages" class="message" 
+        [ngClass]="{'chuckMessage': m.id === 0, 'userMessage':m.id === 1 }">
+            {{m.message}}
+        </div>
+    </div>
     <footer>
         <input [(ngModel)]="newMessage" (keydown.enter)="sendMessage()">
         <button (click)="sendMessage()">Send</button>

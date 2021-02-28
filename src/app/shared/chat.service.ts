@@ -8,9 +8,9 @@ import { IRandomMessage } from './random-message';
 })
 export class ChatService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getRandomMessage():Observable<IRandomMessage>{
-    return this.http.get<IRandomMessage>('https://api.chucknorris.io/jokes/random')
+  getRandomMessage(): Observable<IRandomMessage> {
+    return this.http.get<IRandomMessage>('https://api.chucknorris.io/jokes/random')  
   }
 }

@@ -1,6 +1,7 @@
+import { IRandomMessage } from './random-message';
 export interface IMessage {
     id:number
-    message: string;
+    message: IRandomMessage | string;
     // date:Date;
    
 }
