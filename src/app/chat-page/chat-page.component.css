@@ -1,0 +1,25 @@
+.container {
+    max-width: 700px;
+    height: 600px;
+    border: 1px solid rgb(117, 117, 119);
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 30px;
+    height: 50px;
+}
+
+.chat {
+    height: 450px;
+    border-top: 1px solid rgb(117, 117, 119);
+    border-bottom: 1px solid rgb(117, 117, 119);
+}
+
+footer {
+    height: 100px;
+}
