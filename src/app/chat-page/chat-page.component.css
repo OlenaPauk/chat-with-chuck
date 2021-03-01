@@ -49,10 +49,7 @@ header {
     background-color: rgb(91, 138, 192);
     justify-self: end;
 }
-.chatRadio{
-    width: 100%;
-    margin: 5 auto;
-}
+
 
 /*typing*/
 
@@ -115,8 +112,19 @@ header {
 }
 
 /**/
+
+.chatRadio{
+    width: 100%;
+    margin: 5 auto;
+}
 .category{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 5% ;
+    justify-content: center;
+    
+   
 }
 footer {
     height: 100px;

@@ -1,6 +1,7 @@
 <div class="container">
     <header>
         <p>Chat with Chuck Norris</p>
+        <button (click)="back()" *ngIf="!flagRadio">Back</button>
     </header>
     <div class="chat" *ngIf="!flagRadio">
         <div class="message" *ngFor='let m of messages'>
@@ -19,14 +20,25 @@
         </div>
     </div>
     <div class="chat chatRadio" *ngIf="flagRadio">
-        <div *ngFor="let category of categories" class="category">
-            <label for="{{category}}">{{category}}</label>
-            <input type="radio" name="category" id="{{category}}" value="{{category}}" [(ngModel)]="selectedCategory">
+        <p>Select a conversation category with the Chuck.</p>
+        <div class="category">
+            <div *ngFor="let category of categories">
+                <label for="{{category}}">{{category}}</label>
+                <input type="radio" name="category" id="{{category}}" value="{{category}}"
+                    [(ngModel)]="selectedCategory">
+            </div>
         </div>
-        <button (click)="selectCategory()" [disabled]="selectedCategory===''">Click</button>
+
+        <div class="userName">
+            <p>Please, write your name</p>
+            <input type="text" [(ngModel)]="userName">
+        </div>
+
+        <button (click)="selectCategory()" [disabled]="selectedCategory==='' || userName===''">Click</button>
     </div>
-    <footer >
-        <input [disabled]="flagInput" [(ngModel)]="newMessage" (keydown.enter)="sendMessage()" placeholder="Type your message">
+    <footer>
+        <input [disabled]="flagInput" [(ngModel)]="newMessage" (keydown.enter)="sendMessage()"
+            placeholder="Type your message">
         <button [disabled]="flagInput" (click)="sendMessage()"></button>
     </footer>
 </div>

@@ -16,14 +16,21 @@ export class ChatPageComponent implements OnInit {
   flagRadio: boolean = true;
   categories: Array<string> = [];
   selectedCategory: string = ''
-  flagInput: boolean = true
+  flagInput: boolean = true;
+  userName: string = ''
+  localStr :any=''
+  localMessage : any = ''
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
-    if (this.selectedCategory) {
-      console.log(this.selectedCategory)
-      this.getRandomMessage()
-      console.log('WORKKKKK')
+    if (localStorage.length) {
+    this.localStr =  localStorage.getItem("messages")
+    this.localMessage = JSON.parse(this.localStr)
+    this.messages.push(...this.localMessage)
+    this.flagRadio = false
+    }
+    if(this.messages.length){
+      this.flagInput = false
     }
 
     this.getCategories()
@@ -38,7 +45,7 @@ export class ChatPageComponent implements OnInit {
   }
   getRandomMessage() {
     this.chatService.getRandomMessage(this.selectedCategory).pipe(
-      delay(1000),
+      delay(4000),
     )
       .subscribe(
         (data => {
@@ -48,12 +55,12 @@ export class ChatPageComponent implements OnInit {
           };
           this.typing = false;
           this.messages.push(chuckMessage);
+          this.localSave();
         }
         )
       )
   }
   sendMessage() {
-    console.log(this.newMessage)
     if (this.newMessage.trim()) {
       let userMessage: IMessage = {
         id: 1,
@@ -64,13 +71,33 @@ export class ChatPageComponent implements OnInit {
       this.getRandomMessage()
       this.typing = true;
       this.newMessage = '';
+      this.localSave();
     }
 
   }
   selectCategory() {
     this.flagRadio = false
     this.flagInput = false
-    console.log('click',this.selectedCategory)
+    if (this.userName.trim()) {
+      let startMessage: IMessage = {
+        id: 0,
+        message: `Hello ${this.userName}! Let's talk about ${this.selectedCategory} `
+      }
+      this.messages.push(startMessage)
+      this.userName = '';
+      this.localSave();
+
+    }
+  }
+  back() {
+    this.flagRadio = true
+    this.flagInput = true
+    this.messages = []
+    this.newMessage = '';
+    localStorage.clear()
+  }
+  localSave() {
+    localStorage.setItem("messages", JSON.stringify(this.messages)) 
   }
 
 }
