@@ -7,7 +7,7 @@ import { delay } from 'rxjs/operators'
 @Component({
   selector: 'app-chat-page',
   templateUrl: './chat-page.component.html',
-  styleUrls: ['./chat-page.component.css','./media.css']
+  styleUrls: ['./chat-page.component.css', './media.css']
 })
 export class ChatPageComponent implements OnInit {
   messages: IMessage[] = []
@@ -29,11 +29,10 @@ export class ChatPageComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.length) {
-      this.localMessage = JSON.parse(localStorage.getItem("messages")|| '{}')
+      this.localMessage = JSON.parse(localStorage.getItem("messages") || '[]')
       this.messages.push(...this.localMessage)
-      this.localCategory = (localStorage.getItem("category")|| '{}')
+      this.localCategory = (localStorage.getItem("category") || '')
       this.selectedCategory = this.localCategory.replace(/['"]+/g, '')
-      console.log('Category--', this.localCategory,typeof this.localCategory)
       this.flagRadio = false
     }
     if (this.messages.length) {
