@@ -12,7 +12,7 @@ export class ChatService {
   getCategories():Observable<Object> {
     return this.http.get('https://api.chucknorris.io/jokes/categories')
   }
-  getRandomMessage(): Observable<IRandomMessage> {
-    return this.http.get<IRandomMessage>('https://api.chucknorris.io/jokes/random')
+  getRandomMessage(category:string): Observable<IRandomMessage> {
+    return this.http.get<IRandomMessage>(`https://api.chucknorris.io/jokes/random?category=${category}`)
   }
 }

@@ -115,7 +115,9 @@ header {
 }
 
 /**/
-
+.category{
+    display: flex;
+}
 footer {
     height: 100px;
     min-height: 17vh;

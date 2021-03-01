@@ -8,26 +8,25 @@
                 <span>{{m.message}}</span>
             </div>
         </div>
-        <div class="typing" *ngIf="typing"> 
+        <div class="typing" *ngIf="typing">
             <div class="chat-bubble">
                 <div class="typing">
-                  <div class="dot"></div>
-                  <div class="dot"></div>
-                  <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
     <div class="chat chatRadio" *ngIf="flagRadio">
-  <div *ngFor="let category of categories">
-    <label for="{{category}}">{{category}}</label>
-    <input type="radio" name="category" id="{{category}}">
-  </div>
-       
-
+        <div *ngFor="let category of categories" class="category">
+            <label for="{{category}}">{{category}}</label>
+            <input type="radio" name="category" id="{{category}}" value="{{category}}" [(ngModel)]="selectedCategory">
+        </div>
+        <button (click)="selectCategory()" [disabled]="selectedCategory===''">Click</button>
     </div>
-    <footer>
-        <input [(ngModel)]="newMessage" (keydown.enter)="sendMessage()" placeholder="Type your message">
-        <button (click)="sendMessage()"></button>
+    <footer >
+        <input [disabled]="flagInput" [(ngModel)]="newMessage" (keydown.enter)="sendMessage()" placeholder="Type your message">
+        <button [disabled]="flagInput" (click)="sendMessage()"></button>
     </footer>
 </div>
