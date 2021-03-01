@@ -11,25 +11,35 @@ import { delay } from 'rxjs/operators'
 })
 export class ChatPageComponent implements OnInit {
   messages: IMessage[] = []
+  categories: Array<string> = [];
+
   newMessage: string = '';
+  selectedCategory: string = ''
+  userName: string = ''
+  localStr: any = ''
+  localMessage: any = ''
+  localCategory: any = ''
+
   typing: boolean = false;
   flagRadio: boolean = true;
-  categories: Array<string> = [];
-  selectedCategory: string = ''
   flagInput: boolean = true;
-  userName: string = ''
-  localStr :any=''
-  localMessage : any = ''
+
+
+
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
     if (localStorage.length) {
-    this.localStr =  localStorage.getItem("messages")
-    this.localMessage = JSON.parse(this.localStr)
-    this.messages.push(...this.localMessage)
-    this.flagRadio = false
+      this.localStr = localStorage.getItem("messages")
+      this.localMessage = JSON.parse(this.localStr)
+      this.messages.push(...this.localMessage)
+      console.log(this.localMessage)
+      this.localCategory = localStorage.getItem("category")
+      this.selectedCategory = this.localCategory.replace(/['"]+/g, '')
+      console.log('Category--', this.localCategory,typeof this.localCategory)
+      this.flagRadio = false
     }
-    if(this.messages.length){
+    if (this.messages.length) {
       this.flagInput = false
     }
 
@@ -92,12 +102,14 @@ export class ChatPageComponent implements OnInit {
   back() {
     this.flagRadio = true
     this.flagInput = true
+    this.typing = false;
     this.messages = []
     this.newMessage = '';
     localStorage.clear()
   }
   localSave() {
-    localStorage.setItem("messages", JSON.stringify(this.messages)) 
+    localStorage.setItem("messages", JSON.stringify(this.messages))
+    localStorage.setItem("category", JSON.stringify(this.selectedCategory))
   }
 
 }
