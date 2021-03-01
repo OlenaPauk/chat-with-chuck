@@ -19,8 +19,9 @@
         </div>
     </div>
     <div class="chat chatRadio" *ngIf="flagRadio">
-  <div >
-    <label for=""></label>
+  <div *ngFor="let category of categories">
+    <label for="{{category}}">{{category}}</label>
+    <input type="radio" name="category" id="{{category}}">
   </div>
        
 

@@ -1,7 +1,7 @@
 import { IMessage } from './../shared/message';
 import { ChatService } from './../shared/chat.service';
 import { Component, OnInit } from '@angular/core';
-import { delay, tap } from 'rxjs/operators'
+import { delay, map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-chat-page',
@@ -12,11 +12,21 @@ export class ChatPageComponent implements OnInit {
   messages: IMessage[] = []
   newMessage: string = '';
   typing: boolean = false;
-  flagRadio:boolean = true;
+  flagRadio: boolean = true;
+  categories: Array<string> = [];
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
     // this.getRandomMessage()
+    this.getCategories()
+  }
+  getCategories() {
+    this.chatService.getCategories()
+      .subscribe(
+        (data:any) => {
+       this.categories.push(...data)
+        }
+      )
   }
   getRandomMessage() {
     this.chatService.getRandomMessage().pipe(
@@ -28,7 +38,6 @@ export class ChatPageComponent implements OnInit {
             id: 0,
             message: data.value
           };
-          console.log('data----', data)
           this.typing = false;
           this.messages.push(chuckMessage);
         }
@@ -47,7 +56,6 @@ export class ChatPageComponent implements OnInit {
       this.getRandomMessage()
       this.typing = true;
       this.newMessage = '';
-      console.log(this.messages)
     }
 
   }
