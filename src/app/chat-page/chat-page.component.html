@@ -2,14 +2,31 @@
     <header>
         <p>Chat with Chuck Norris</p>
     </header>
-    <div class="chat">
-        <div *ngFor="let m of messages" class="message" 
-        [ngClass]="{'chuckMessage': m.id === 0, 'userMessage':m.id === 1 }">
-            {{m.message}}
+    <div class="chat" *ngIf="!flagRadio">
+        <div class="message" *ngFor='let m of messages'>
+            <div class="textMessage" [ngClass]="{'chuckMessage': m.id === 0, 'userMessage':m.id === 1 }">
+                <span>{{m.message}}</span>
+            </div>
+        </div>
+        <div class="typing" *ngIf="typing"> 
+            <div class="chat-bubble">
+                <div class="typing">
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                </div>
+                </div>
         </div>
     </div>
+    <div class="chat chatRadio" *ngIf="flagRadio">
+  <div >
+    <label for=""></label>
+  </div>
+       
+
+    </div>
     <footer>
-        <input [(ngModel)]="newMessage" (keydown.enter)="sendMessage()">
-        <button (click)="sendMessage()">Send</button>
+        <input [(ngModel)]="newMessage" (keydown.enter)="sendMessage()" placeholder="Type your message">
+        <button (click)="sendMessage()"></button>
     </footer>
 </div>

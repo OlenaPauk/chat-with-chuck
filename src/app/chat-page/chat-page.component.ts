@@ -1,7 +1,7 @@
 import { IMessage } from './../shared/message';
 import { ChatService } from './../shared/chat.service';
 import { Component, OnInit } from '@angular/core';
-import { IRandomMessage } from '../shared/random-message';
+import { delay, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-chat-page',
@@ -11,35 +11,45 @@ import { IRandomMessage } from '../shared/random-message';
 export class ChatPageComponent implements OnInit {
   messages: IMessage[] = []
   newMessage: string = '';
+  typing: boolean = false;
+  flagRadio:boolean = true;
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
-    this.getRandomMessage()
+    // this.getRandomMessage()
   }
   getRandomMessage() {
-    this.chatService.getRandomMessage()
+    this.chatService.getRandomMessage().pipe(
+      delay(5000),
+    )
       .subscribe(
         (data => {
           let chuckMessage = {
             id: 0,
             message: data.value
           };
-          console.log('data----',data)
+          console.log('data----', data)
+          this.typing = false;
           this.messages.push(chuckMessage);
-          console.log(this.messages)
         }
         )
       )
   }
   sendMessage() {
     console.log(this.newMessage)
-    let userMessage: IMessage = {
-      id: 1,
-      message: this.newMessage
+    if (this.newMessage.trim()) {
+      let userMessage: IMessage = {
+        id: 1,
+        message: this.newMessage
+      }
+      this.messages.push(userMessage)
+
+      this.getRandomMessage()
+      this.typing = true;
+      this.newMessage = '';
+      console.log(this.messages)
     }
-    this.messages.push(userMessage)
-    this.newMessage = '';
-    console.log(this.messages)
+
   }
 
 }
