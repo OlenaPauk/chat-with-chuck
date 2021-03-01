@@ -7,7 +7,7 @@
 }
 
 header {
-    height: 50px;
+    min-height: 50px;
     text-align: center;
     font-size: 1.1rem;
     display: flex;
@@ -36,26 +36,30 @@ header {
     min-height: 20px;
     margin: 15px auto;
     display: grid;
+
 }
 
 .textMessage {
     max-width: 70%;
     padding: 10px;
-    border-radius: 15px;
     word-break: break-all;
     word-break: break-word;
+    border-radius: 20px;
+
 }
 
 .chuckMessage {
     min-width: 1%;
     background-color: rgb(160, 200, 238);
     justify-self: start;
+    border-bottom-left-radius: 2px;
 }
 
 .userMessage {
     min-height: 10px;
     background-color: rgb(91, 138, 192);
     justify-self: end;
+    border-bottom-right-radius: 2px;
 }
 
 /*typing*/

@@ -1,0 +1,36 @@
+@media only screen and (max-width: 600px) {
+    .btn-start {
+        height: 35px;
+    }
+    h4 {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 538px) {
+    .chatMedia {
+        height: 600px;
+    }
+    .btn-start {
+        height: 30px;
+    }
+    .userName {
+        width: 50%;
+    }
+    h4 {
+        font-size: 14px;
+    }
+    .title {
+        font-size: 16px;
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 391px) {
+    .btn-start {
+        height: 45px;
+    }
+    .btn-back {
+        margin-left: 1%;
+    }
+}

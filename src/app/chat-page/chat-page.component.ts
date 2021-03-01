@@ -7,7 +7,7 @@ import { delay } from 'rxjs/operators'
 @Component({
   selector: 'app-chat-page',
   templateUrl: './chat-page.component.html',
-  styleUrls: ['./chat-page.component.css']
+  styleUrls: ['./chat-page.component.css','./media.css']
 })
 export class ChatPageComponent implements OnInit {
   messages: IMessage[] = []
