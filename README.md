@@ -1,4 +1,4 @@
-# Demo page[https://olenapauk.github.io/chat-with-chuck/]
+# [Demo page](https://olenapauk.github.io/chat-with-chuck/)
 
 # ChatWithChuck
 
