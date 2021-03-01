@@ -2,6 +2,7 @@ import { IMessage } from './../shared/message';
 import { ChatService } from './../shared/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators'
+import { type } from 'os';
 
 
 @Component({
@@ -16,9 +17,8 @@ export class ChatPageComponent implements OnInit {
   newMessage: string = '';
   selectedCategory: string = ''
   userName: string = ''
-  localStr: any = ''
-  localMessage: any = ''
-  localCategory: any = ''
+  localMessage: Array<any> = []
+  localCategory: string = ''
 
   typing: boolean = false;
   flagRadio: boolean = true;
@@ -30,11 +30,9 @@ export class ChatPageComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.length) {
-      this.localStr = localStorage.getItem("messages")
-      this.localMessage = JSON.parse(this.localStr)
+      this.localMessage = JSON.parse(localStorage.getItem("messages")|| '{}')
       this.messages.push(...this.localMessage)
-      console.log(this.localMessage)
-      this.localCategory = localStorage.getItem("category")
+      this.localCategory = (localStorage.getItem("category")|| '{}')
       this.selectedCategory = this.localCategory.replace(/['"]+/g, '')
       console.log('Category--', this.localCategory,typeof this.localCategory)
       this.flagRadio = false
