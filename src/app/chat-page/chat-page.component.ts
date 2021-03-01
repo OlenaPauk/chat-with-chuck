@@ -2,7 +2,6 @@ import { IMessage } from './../shared/message';
 import { ChatService } from './../shared/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators'
-import { type } from 'os';
 
 
 @Component({
